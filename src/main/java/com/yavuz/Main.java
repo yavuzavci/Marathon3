@@ -25,6 +25,7 @@ public class Main {
             System.out.println("4- Kiralama Yap");
             System.out.println("5- Raporlamalar");
             System.out.println("0- CIKIS YAP");
+            System.out.print("Seciniz...: ");
             secim = sc.nextInt();
             switch (secim){
                 case 1:
@@ -62,6 +63,7 @@ public class Main {
             System.out.println("3- Herhangi Bir Musterinin Kiraladigi Araclar");
             System.out.println("4- Musterilerin Kiraladiklari Araclar");
             System.out.println("0- <<< Geri Don");
+            System.out.print("Seciniz...: ");
             secim = sc.nextInt();
             switch (secim){
                 case 1:

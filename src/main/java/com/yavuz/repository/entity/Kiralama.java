@@ -18,7 +18,7 @@ import java.util.Date;
         @NamedQuery(name = "Kiralama.getCustomerIds",
                 query = "SELECT k.kisiId FROM Kiralama k"),
         @NamedQuery(name = "Kiralama.getCarIdsByCustomerId",
-                query = "SELECT k.aracId FROM Kiralama k" +
+                query = "SELECT k.aracId FROM Kiralama k " +
                         "WHERE k.kisiId = :kisiId")
 })
 public class Kiralama extends BaseEntity{

@@ -24,7 +24,7 @@ public class KiralamaService extends MyFactoryService<KiralamaRepository, Kirala
     public List<Arac> getRentableCars(){
         List<Arac> aracList = aracService.findAll()
                 .stream()
-                .filter(a -> !a.getKiralikMi())
+                .filter(a -> a.getKiralikMi())
                 .collect(Collectors.toList());
         return aracList;
     }

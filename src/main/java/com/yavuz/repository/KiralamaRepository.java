@@ -25,7 +25,7 @@ public class KiralamaRepository extends MyFactoryRepository<Kiralama,Long> {
 
     public List<Long> getCarIdsByCustomerId(Long customerId){
         TypedQuery<Long> typedQuery = getEntityManager()
-                .createNamedQuery("Kiralama.Kiralama.getCarIdsByCustomerId", Long.class);
+                .createNamedQuery("Kiralama.getCarIdsByCustomerId", Long.class);
         typedQuery.setParameter("kisiId",customerId);
         return typedQuery.getResultList();
     }

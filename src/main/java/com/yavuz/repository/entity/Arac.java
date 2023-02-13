@@ -13,9 +13,9 @@ import javax.persistence.*;
 @Entity
 @NamedQueries({
         @NamedQuery(name = "Arac.existByCarName",
-                query = "SELECT COUNT(a)>0 from Arac a WHERE p.ad = :ad"),
+                query = "SELECT COUNT(a)>0 from Arac a WHERE a.ad = :ad"),
         @NamedQuery(name = "Arac.findByCarName",
-                query = "SELECT a FROM Arac a WHERE p.ad = :ad")
+                query = "SELECT a FROM Arac a WHERE a.ad = :ad")
 })
 public class Arac extends BaseEntity{
     @Id

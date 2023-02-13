@@ -43,12 +43,14 @@ public class KiralamaController {
                 Arac arac = oArac.get();
                 arac.setKiralikMi(false);
                 arac.setUpdateat(System.currentTimeMillis());
+                aracService.update(arac);
                 Kiralama kiralama = Kiralama.builder()
                         .aracId(aracId)
                         .kisiId(kisiId)
                         .createat(System.currentTimeMillis())
                         .updateat(System.currentTimeMillis())
                         .kiraBaslangic(new Date(System.currentTimeMillis()))
+                        .kiraBitis(new Date(System.currentTimeMillis() + (1000 * 60 * 60 * 24 * 15)))
                         .build();
                 kiralamaService.save(kiralama);
                 System.out.println("Kiralama islemi basarili.");
@@ -71,7 +73,10 @@ public class KiralamaController {
 
     public Map<Kisi, List<Arac>> musterilerinKiraladiklariAraclariBul(){
         try {
-            return kiralamaService.getAllCustomersWithRentedCars();
+            Map<Kisi, List<Arac>> map =  kiralamaService.getAllCustomersWithRentedCars();
+            if(map.isEmpty())
+                System.out.println("Musteriler herhangi bir arac kiralamamis.");
+            return map;
         } catch (Exception e){
             System.out.println("Beklenmeyen bir hata olustu : " + e.toString());
             return new HashMap<>();
