@@ -3,10 +3,7 @@ package com.yavuz.repository.entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @SuperBuilder
 @Data
@@ -14,12 +11,21 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @ToString
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Kiralama.getCarIds",
+                query = "SELECT k.aracId FROM Kiralama k"),
+        @NamedQuery(name = "Kiralama.getCustomerIds",
+                query = "SELECT k.kisiId FROM Kiralama k"),
+        @NamedQuery(name = "Kiralama.getCarIdsByCustomerId",
+                query = "SELECT k.aracId FROM Kiralama k" +
+                        "WHERE k.kisiId = :kisiId")
+})
 public class Kiralama extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
-    private Kisi kisi;
-    private Arac arac;
+    private Long kisiId;
+    private Long aracId;
     private Long kiraBaslangic;
     private Long kiraBitis;
 }
