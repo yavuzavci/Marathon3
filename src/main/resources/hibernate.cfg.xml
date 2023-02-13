@@ -11,5 +11,8 @@
         <property name="hibernate.show_sql">true</property>
         <property name="hibernate.format_sql">true</property>
         <property name="hibernate.hbm2ddl.auto">update</property>
+        <mapping class="com.yavuz.repository.entity.Arac"></mapping>
+        <mapping class="com.yavuz.repository.entity.Kiralama"></mapping>
+        <mapping class="com.yavuz.repository.entity.Kisi"></mapping>
     </session-factory>
 </hibernate-configuration>
