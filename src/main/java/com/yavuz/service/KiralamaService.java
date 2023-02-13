@@ -53,13 +53,17 @@ public class KiralamaService extends MyFactoryService<KiralamaRepository, Kirala
     }
 
     public Map<Kisi,List<Arac>> getAllCustomersWithRentedCars(){
-        List<Kisi> kisiler = getCustomersWhoRentedCars();
         Map<Kisi,List<Arac>> kisilerVeAraclar = new HashMap<>();
-        kisiler.forEach(k -> {
-            if(!kisilerVeAraclar.containsKey(k)){
-                kisilerVeAraclar.put(k,getCarsByCustomerId(k.getId()));
-            }
-        });
+        try{
+            List<Kisi> kisiler = getCustomersWhoRentedCars();
+            kisiler.forEach(k -> {
+                if(!kisilerVeAraclar.containsKey(k)){
+                    kisilerVeAraclar.put(k,getCarsByCustomerId(k.getId()));
+                }
+            });
+        } catch (Exception e){
+            System.out.println("Beklenmeyen bir hata oldu : " + e.toString());
+        }
         return kisilerVeAraclar;
     }
 
@@ -68,12 +72,18 @@ public class KiralamaService extends MyFactoryService<KiralamaRepository, Kirala
     }
 
     public List<Arac> getCarsByCustomerId(Long customerId){
-        List<Long> aracIdList = getCarIdsByCustomerId(customerId);
         List<Arac> aracList = new ArrayList<>();
-        aracIdList.forEach(id -> {
-            Arac arac = aracService.findById(id).get();
-            aracList.add(arac);
-        });
+
+        try{
+            List<Long> aracIdList = getCarIdsByCustomerId(customerId);
+            aracIdList.forEach(id -> {
+                Arac arac = aracService.findById(id).get();
+                aracList.add(arac);
+            });
+        } catch (Exception e){
+            System.out.println("Beklenmeyen bir hata olustu : " + e.toString());
+        }
+
         return aracList;
     }
 }

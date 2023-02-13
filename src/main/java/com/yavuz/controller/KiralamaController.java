@@ -7,9 +7,8 @@ import com.yavuz.service.AracService;
 import com.yavuz.service.KiralamaService;
 import com.yavuz.service.KisiService;
 
-import java.util.Date;
-import java.util.Optional;
-import java.util.Scanner;
+import java.util.*;
+import java.util.stream.Collectors;
 
 public class KiralamaController {
     private AracService aracService;
@@ -58,5 +57,50 @@ public class KiralamaController {
             System.out.println("Beklenmeyen bir hata olustu : " + e.toString());
             System.out.println("İslem basarisiz.");
         }
+    }
+
+    public List<Arac> musterininKiraladigiAraclariBul(){
+        System.out.print("Musterinin numarasini giriniz..: ");
+        Long kisiId = Long.parseLong(scanner.nextLine());
+        List<Arac> aracList = kiralamaService.getCarsByCustomerId(kisiId);
+        if(aracList.isEmpty()){
+            System.out.println("Musterinin kiralanmis araci veya araclari yok.");
+        }
+        return aracList;
+    }
+
+    public Map<Kisi, List<Arac>> musterilerinKiraladiklariAraclariBul(){
+        try {
+            return kiralamaService.getAllCustomersWithRentedCars();
+        } catch (Exception e){
+            System.out.println("Beklenmeyen bir hata olustu : " + e.toString());
+            return new HashMap<>();
+        }
+    }
+
+    public List<Arac> kiralanabilirAraclariBul(){
+        List<Arac> aracList = new ArrayList<>();
+        try {
+            aracList = kiralamaService.getRentableCars();
+            if(aracList.isEmpty())
+                System.out.println("Sistemde kiralanabilir arac yok.");
+        } catch (Exception e){
+            System.out.println("Beklenmeyen bir hata olustu : " + e.toString());
+            return new ArrayList<>();
+        }
+        return aracList;
+    }
+
+    public List<Arac> kiralanmisAraclariBul(){
+        List<Arac> aracList = new ArrayList<>();
+        try {
+            aracList = kiralamaService.getRentedCars();
+            if(aracList.isEmpty())
+                System.out.println("Sistemde kiralik arac yok.");
+        } catch (Exception e){
+            System.out.println("Beklenmeyen bir hata olustu : " + e.toString());
+            return new ArrayList<>();
+        }
+        return aracList;
     }
 }
