@@ -3,10 +3,7 @@ package com.yavuz.repository.entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @SuperBuilder
 @Data
@@ -14,6 +11,12 @@ import javax.persistence.Id;
 @AllArgsConstructor
 @ToString
 @Entity
+@NamedQueries({
+        @NamedQuery(name = "Arac.existByCarName",
+                query = "SELECT COUNT(a)>0 from Arac a WHERE p.ad = :ad"),
+        @NamedQuery(name = "Arac.findByCarName",
+                query = "SELECT a FROM Arac a WHERE p.ad = :ad")
+})
 public class Arac extends BaseEntity{
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)

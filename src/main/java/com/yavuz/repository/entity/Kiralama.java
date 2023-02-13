@@ -4,6 +4,7 @@ import lombok.*;
 import lombok.experimental.SuperBuilder;
 
 import javax.persistence.*;
+import java.util.Date;
 
 @SuperBuilder
 @Data
@@ -26,6 +27,8 @@ public class Kiralama extends BaseEntity{
     private Long id;
     private Long kisiId;
     private Long aracId;
-    private Long kiraBaslangic;
-    private Long kiraBitis;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date kiraBaslangic;
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date kiraBitis;
 }
