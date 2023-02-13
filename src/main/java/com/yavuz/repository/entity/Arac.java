@@ -21,5 +21,4 @@ public class Arac extends BaseEntity{
     private String ad;
     @Builder.Default
     private Boolean kiralikMi = true; // sisteme eklenen her yeni araç başta kiralanabilir vaziyettedir.
-    private Kisi kisi;
 }

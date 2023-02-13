@@ -3,16 +3,12 @@ package com.yavuz.repository.entity;
 import lombok.*;
 import lombok.experimental.SuperBuilder;
 
-import javax.persistence.Entity;
-import javax.persistence.GeneratedValue;
-import javax.persistence.GenerationType;
-import javax.persistence.Id;
+import javax.persistence.*;
 
 @SuperBuilder
 @Data
 @NoArgsConstructor
 @AllArgsConstructor
-@ToString
 @Entity
 public class Kisi extends BaseEntity{
     @Id
@@ -21,4 +17,14 @@ public class Kisi extends BaseEntity{
     private String ad;
     private String telefon;
     private String email;
+
+    @Override
+    public String toString() {
+        return "Kisi{" +
+                "id=" + id +
+                ", ad='" + ad + '\'' +
+                ", telefon='" + telefon + '\'' +
+                ", email='" + email + '\'' +
+                '}';
+    }
 }
